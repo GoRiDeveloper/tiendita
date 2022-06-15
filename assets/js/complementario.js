@@ -1,0 +1,1 @@
+let agg = prompt("Agrega un producto a vender :").toLowerCase();
