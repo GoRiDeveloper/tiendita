@@ -10,7 +10,9 @@
         <meta name="keywords" content="">
 
         <!-- Script -->
-        <script defer src="./assets/js/main.js"></script>
+        <script defer src="./assets/js/database.js"></script>
+        <script defer src="./assets/js/variables.js"></script>
+        <script defer src="./assets/js/app.js"></script>
         <!-- Iconos Script -->
         <script src="https://kit.fontawesome.com/9a70094236.js" crossorigin="anonymous"></script>
 
@@ -22,7 +24,7 @@
 
     </head>
 
-    <body class="grid-index">
+    <body class="grid-index"> 
         
         <header>
 
@@ -60,15 +62,16 @@
 
                 </a>
 
-                <a href="./assets/pages/Products.html">
+<!--                <a href="./assets/pages/Products.html">-->
 
-                    <span>
+                    <span id="cart">
 
                         <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-counter">0</span>
 
                     </span>
 
-                </a>
+<!--                </a>-->
 
             </div>
 
@@ -76,7 +79,7 @@
 
         <main class="main-index">
 
-            <section class="section__menu">
+            <div class="section__menu">
 
                 <nav class="menu">
 
@@ -102,15 +105,15 @@
 
                 </nav>
 
-                <article class="slide">
+                <div class="slide">
 
                     <img src="./assets/img/Slide.png" alt="products">
 
-                </article>
+                </div>
 
-            </section>
+            </div>
 
-            <section class="section__content">
+            <div class="section__content">
 
                 <article class="article__new-title">
 
@@ -118,99 +121,9 @@
 
                 </article>
 
-                <article id="new-prod" class="article__new-new">
+                <article id="products-new" class="article__new-new">
 
-                    <div class="box__prod">
 
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-new-1.jpg" alt="prod-new-1">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 1000 $ </h3>
-                            </a>
-
-                            <p> Refrigerador de la marca Tiendita, producto de alta calidad. </p>
-                            <button id="prod-1" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="box__prod">
-
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-new-2.jpg" alt="prod-new-2">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 550 $ </h3>
-                            </a>
-
-                            <p> Celular Tiendita, con tecnología de punta a excelente precio. </p>
-                            <button id="prod-2" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="box__prod">
-
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-new-3.jpg" alt="prod-new-3">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 130 $ </h3>
-                            </a>
-
-                            <p> Tenis Nike x Tiendita, exclusivos y en muy pocas unidades. </p>
-                            <button id="prod-3" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="box__prod">
-
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-new-4.jpg" alt="prod-new-4">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 1250 $ </h3>
-                            </a>
-
-                            <p> P.C. Gamer con componentes Tiendita de alto rendimiento. </p>
-                            <button id="prod-4" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
 
                 </article>
 
@@ -220,103 +133,13 @@
 
                 </article>
 
-                <article id="offers-prod" class="article__offers-offers">
+                <article id="products-offers" class="article__offers-offers">
 
-                    <div class="box__prod">
 
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-offer-1.jpg" alt="prod-offer-1">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 600 $ </h3>
-                            </a>
-
-                            <p> Pantalla moderna Tiendita, con Smart TV a precio increible. </p>
-                            <button id="prod-5" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="box__prod">
-
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-offer-2.jpg" alt="prod-offer-2">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 100 $ </h3>
-                            </a>
-
-                            <p> Sillón Tiendita, oferta unica con pocas unidades. </p>
-                            <button id="prod-6" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="box__prod">
-
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-offer-3.jpg" alt="prod-offer-3">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 15 $ </h3>
-                            </a>
-
-                            <p> Asistente virtual Tiendita, oferta única para usuarios. </p>
-                            <button id="prod-7" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="box__prod">
-
-                        <div class="box__prod-img">
-
-                            <a href="#">
-                                <img src="./assets/img/prod-offer-4.jpg" alt="prod-offer-4">
-                            </a>
-
-                        </div>
-
-                        <div class="box__prod-info">
-
-                            <a href="#">
-                                <h3> 100 $ </h3>
-                            </a>
-
-                            <p> Bocina Tiendita x JBL a increible precio, sonido excelente. </p>
-                            <button id="prod-8" class="anim-btn add"> Añadir al Carrito </button>
-
-                        </div>
-
-                    </div>
 
                 </article>
 
-            </section>
+            </div>
             
         </main>
 
@@ -354,6 +177,30 @@
             </div>
         
         </footer>
+
+        <div class="cover">
+
+            <div class="cover__cart">
+
+                <h2> Carrito de Compras : </h2>
+                <button id="x-cart">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+                <div id="cover__cart-products">
+
+                    
+
+                </div>
+                <p class="cover__cart-price"> Total : <span id="total-price">0</span> $ </p>
+                <a href="./assets/pages/Products.html">
+                    <button class="anim-btn cover__cart-buy"> Comprar Ahora </button>
+                </a>
+
+            </div>
+
+        </div>
 
     </body>
 
