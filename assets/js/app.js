@@ -146,6 +146,8 @@ function showCartA (productAddNew) {
 
     })
 
+    saveStorage();
+
 }
 
 function addToCartB (id) {
@@ -181,6 +183,8 @@ function showCartB (productAddOffer) {
 
     })
 
+    saveStorage();
+
 }
 
 function updateCart () {
@@ -188,7 +192,6 @@ function updateCart () {
     cartCounter.innerText = shoppingCart.length
     totalPrice.innerText = shoppingCart.reduce((acc, e) => acc + e.price, 0);
 
-    saveStorage();
 }
 
 function saveStorage() {
@@ -203,28 +206,34 @@ function saveStorage() {
 
 function recoverStorage() {
       
-    if (cartA = JSON.parse(localStorage.getItem("cart"))) {
+    if (localStorage.getItem("cart")) {
 
-        let div = document.createElement("div");
-        div.setAttribute('class', 'cart-product');
-        div.innerHTML = `
-        
-            <p> ${productAddOffer.item.toUpperCase()} </p>
-            <p> Precio : ${productAddOffer.price} $ </p>
-            <button id="delete${productAddOffer.id}" class="cart-delete"><i class="fa-solid fa-delete-left"></i></button>
-        
-        `;
+        cartA = JSON.parse(localStorage.getItem("cart"));
 
-        boxCart.appendChild(div);
+        cartA.forEach(a => {
 
-        let deleteA = document.getElementById(`delete${productAddOffer.id}`);
-        deleteA.addEventListener('click', ()=> {
+            let div = document.createElement("div");
+            div.setAttribute('class', 'cart-product');
+            div.innerHTML = `
+            
+                <p> ${a.item.toUpperCase()} </p>
+                <p> Precio : ${a.price} $ </p>
+                <button id="delete${a.id}" class="cart-delete"><i class="fa-solid fa-delete-left"></i></button>
+            
+            `;
 
-            deleteA.parentElement.remove()
-            shoppingCart = shoppingCart.filter(e => e.id !== productAddOffer.id);
-            updateCart();
+            boxCart.appendChild(div);
 
-        })
+            let deleteA = document.getElementById(`delete${a.id}`);
+            deleteA.addEventListener('click', ()=> {
+
+                deleteA.parentElement.remove()
+                shoppingCart = shoppingCart.filter(e => e.id !== a.id);
+                updateCart();
+
+            })
+
+        });
 
     }
 
