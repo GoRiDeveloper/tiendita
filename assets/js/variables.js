@@ -11,6 +11,8 @@ const boxCart = document.getElementById("cover__cart-products");
 const cartCounter = document.getElementById("cart-counter");
 const totalPrice = document.getElementById("total-price");
 
+const productsNews = [];
+const productsOffers = [];
 const iva = 1.16;
 
 let shoppingCart = [];

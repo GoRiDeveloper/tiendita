@@ -1,3 +1,6 @@
+productsA(stockProductsNew);
+productsB(stockProductsOffer);
+
 cartOpen.addEventListener('click', ()=> {
 
     cart.classList.toggle('cover__cart-active')
@@ -22,7 +25,7 @@ cart.addEventListener('click', ()=> {
 
 });
 
-const showNews = ( (a)=> {
+function productsA (a) {
 
     boxProductsNew.innerHTML = "";
 
@@ -35,7 +38,7 @@ const showNews = ( (a)=> {
             <div class="box__prod-img">
 
                 <a href="#">
-                    <img src="${b.img}" alt="prod-new-${b.id}">
+                    <img src="${b.img}" alt="prod-new-1">
                 </a>
 
             </div>
@@ -47,7 +50,7 @@ const showNews = ( (a)=> {
                 </a>
 
                 <p> ${b.description} </p>
-                <button id="add${b.id}" class="anim-btn add"> Añadir al Carrito </button>
+                <button id="add${b.id}" data-id="1" class="anim-btn add"> Añadir al Carrito </button>
 
             </div>
         
@@ -64,22 +67,66 @@ const showNews = ( (a)=> {
 
     })
 
-});
+}
 
-const addToCartA = ( (id) => {
+function productsB (b) {
 
-    let productAddNew = productsNews.find(pro => pro.id === id);
+    boxProductsOffers.innerHTML = "";
+
+    b.forEach(c => {
+
+        let div = document.createElement("div");
+        div.classList.add("box__prod");
+        div.innerHTML = `
+        
+            <div class="box__prod-img">
+
+                <a href="#">
+                    <img src="${c.img}" alt="prod-new-1">
+                </a>
+
+            </div>
+
+            <div class="box__prod-info">
+
+                <a href="#">
+                    <h3> ${c.price} $ </h3>
+                </a>
+
+                <p> ${c.description} </p>
+                <button id="add${c.id}" data-id="1" class="anim-btn add"> Añadir al Carrito </button>
+
+            </div>
+        
+        `;
+
+        boxProductsOffers.appendChild(div);
+
+        let agg = document.getElementById(`add${c.id}`);
+        agg.addEventListener('click', ()=> {
+
+            addToCartB(c.id);
+
+        })
+
+    })
+
+}
+
+function addToCartA (id) {
+
+    let productAddNew = stockProductsNew.find(pro => pro.id === id);
 
     shoppingCart.push(productAddNew);
     showCartA(productAddNew);
     updateCart();
 
-});
+}
 
-const showCartA = ( (productAddNew) => {
+function showCartA (productAddNew) {
 
     let div = document.createElement("div");
-    div.setAttribute("class", "cart-product");
+    div.setAttribute('class', 'cart-product');
     div.innerHTML = `
     
         <p> ${productAddNew.item.toUpperCase()} </p>
@@ -96,72 +143,27 @@ const showCartA = ( (productAddNew) => {
         deleteA.parentElement.remove()
         shoppingCart = shoppingCart.filter(e => e.id !== productAddNew.id);
         updateCart();
-        saveStorage();
 
     })
 
     saveStorage();
 
-});
+}
 
-const showOffers = ( (b) => {
+function addToCartB (id) {
 
-    boxProductsOffers.innerHTML = "";
-
-    b.forEach(c => {
-
-        let div = document.createElement("div");
-        div.classList.add("box__prod");
-        div.innerHTML = `
-        
-            <div class="box__prod-img">
-
-                <a href="#">
-                    <img src="${c.img}" alt="prod-new-${c.id}">
-                </a>
-
-            </div>
-
-            <div class="box__prod-info">
-
-                <a href="#">
-                    <h3> ${c.price} $ </h3>
-                </a>
-
-                <p> ${c.description} </p>
-                <button id="add${c.id}" class="anim-btn add"> Añadir al Carrito </button>
-
-            </div>
-            
-        `;
-
-        boxProductsOffers.appendChild(div);
-
-        let agg = document.getElementById(`add${c.id}`);
-        agg.addEventListener('click', ()=> {
-
-            addToCartB(c.id);
-
-        }) 
-
-    });
-
-});
-
-const addToCartB = ( (id) => {
-
-    let productAddOffer = productsOffers.find(pro => pro.id === id);
+    let productAddOffer = stockProductsOffer.find(pro => pro.id === id);
 
     shoppingCart.push(productAddOffer);
     showCartB(productAddOffer);
     updateCart();
 
-});
+}
 
-const showCartB = ( (productAddOffer) => {
+function showCartB (productAddOffer) {
 
     let div = document.createElement("div");
-    div.setAttribute("class", "cart-product");
+    div.setAttribute('class', 'cart-product');
     div.innerHTML = `
     
         <p> ${productAddOffer.item.toUpperCase()} </p>
@@ -178,33 +180,34 @@ const showCartB = ( (productAddOffer) => {
         deleteA.parentElement.remove()
         shoppingCart = shoppingCart.filter(e => e.id !== productAddOffer.id);
         updateCart();
-        saveStorage();
 
     })
 
     saveStorage();
 
-});
+}
 
-const updateCart = ( () => {
+function updateCart () {
 
     cartCounter.innerText = shoppingCart.length
     totalPrice.innerText = shoppingCart.reduce((acc, e) => acc + e.price, 0);
 
-});
+    saveStorage();
 
-const saveStorage = ( () => {
+}
 
+function saveStorage() {
+    
     if (shoppingCart.length > 0) {
      
         localStorage.setItem("cart", JSON.stringify(shoppingCart));
 
     }
 
-});
+}
 
-const recoverStorage = ( () => {
-
+function recoverStorage() {
+      
     if (localStorage.getItem("cart")) {
 
         cartA = JSON.parse(localStorage.getItem("cart"));
@@ -237,8 +240,6 @@ const recoverStorage = ( () => {
 
     }
 
-});
+}
 
-showNews(productsNews);
-showOffers(productsOffers);
 recoverStorage();
