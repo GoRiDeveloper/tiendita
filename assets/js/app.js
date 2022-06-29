@@ -59,6 +59,7 @@ const showNews = ( (a)=> {
         agg.addEventListener('click', ()=> {
 
             addToCartA(b.id);
+            alertSuccessful();
 
         })
 
@@ -97,10 +98,9 @@ const showCartA = ( (productAddNew) => {
         shoppingCart = shoppingCart.filter(e => e.id !== productAddNew.id);
         updateCart();
         saveStorage();
+        alertRemove();
 
     })
-
-    saveStorage();
 
 });
 
@@ -141,12 +141,42 @@ const showOffers = ( (b) => {
         agg.addEventListener('click', ()=> {
 
             addToCartB(c.id);
+            alertSuccessful();
 
         }) 
 
     });
 
 });
+
+const alertSuccessful = () => {
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+      
+      Toast.fire({
+        icon: 'success',
+        title: '¡Producto agregado al carrito!',
+        background: '#3c70a3',
+        customClass: {
+
+            popup: 'popup-sweet',
+            title: 'title-sweet',
+            timerProgressBar: 'progress-sweet'
+
+        }
+    })
+
+}
 
 const addToCartB = ( (id) => {
 
@@ -179,10 +209,9 @@ const showCartB = ( (productAddOffer) => {
         shoppingCart = shoppingCart.filter(e => e.id !== productAddOffer.id);
         updateCart();
         saveStorage();
+        alertRemove();
 
     })
-
-    saveStorage();
 
 });
 
@@ -190,8 +219,38 @@ const updateCart = ( () => {
 
     cartCounter.innerText = shoppingCart.length
     totalPrice.innerText = shoppingCart.reduce((acc, e) => acc + e.price, 0);
+    saveStorage();
 
 });
+
+const alertRemove = () => {
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+      
+      Toast.fire({
+        icon: 'error',
+        title: '¡Producto eliminado del carrito!',
+        background: '#3c70a3',
+        customClass: {
+
+            popup: 'popup-sweet',
+            title: 'title-sweet',
+            timerProgressBar: 'progress-sweet'
+
+        }
+    })
+
+}
 
 const saveStorage = ( () => {
 

@@ -137,6 +137,8 @@ body {
     min-width: 100vw;
     min-height: 100vh;
     background-color: #3c70a3;
+    margin: 0;
+    padding-right: 0px;
     overflow-x: hidden;
 
 }
@@ -720,3 +722,22 @@ p{
     height: 100%;
     background: #3c70a3;
   }
+
+.popup-sweet {
+
+    border: 2px solid #162b3f;
+
+}
+
+.title-sweet {
+
+    color: #000;
+    font-family: 'Expletus Sans', cursive;
+
+}
+
+.progress-sweet {
+
+    background-color: #162b3f;
+
+}
