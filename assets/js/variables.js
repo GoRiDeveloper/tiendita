@@ -6,12 +6,13 @@ const cartBox = document.getElementsByClassName("cover__cart")[0];
 
 const boxProductsNew = document.getElementById("products-new");
 const boxProductsOffers = document.getElementById("products-offers");
-const boxCart = document.getElementById("cover__cart-products");
 
 const cartCounter = document.getElementById("cart-counter");
-const totalPrice = document.getElementById("total-price");
+const totalPrice = document.querySelector(".total-price");
+const boxProds = document.querySelector(".cover__cart-products");
+const tableProd = document.querySelector(".table-products");
 
-const productsNews = [];
+const productsNew = [];
 const productsOffers = [];
 const iva = 1.16;
 

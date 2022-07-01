@@ -9,12 +9,15 @@
         <meta name="description" content="">
         <meta name="keywords" content="">
 
+        <!-- Sweet Alert Script -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Iconos Script -->
+        <script src="https://kit.fontawesome.com/9a70094236.js" crossorigin="anonymous"></script>
         <!-- Script -->
         <script defer src="../js/database.js"></script>
         <script defer src="../js/variables.js"></script>
+        <script defer src="../js/presentation.js"></script>
         <script defer src="../js/app.js"></script>
-        <!-- Iconos Script -->
-        <script src="https://kit.fontawesome.com/9a70094236.js" crossorigin="anonymous"></script>
 
         <link rel="shortcut icon" href="../img/Tiendita.png">
         <!-- Estilos CSS -->
@@ -60,6 +63,8 @@
                     
                     </span>
 
+                </a>
+
                 <a href="#">
 
                     <span>
@@ -76,7 +81,7 @@
 
         <main class="main-products">
 
-            <section class="section__menu">
+            <div class="section__menu">
 
                 <nav class="menu">
 
@@ -102,7 +107,7 @@
 
                 </nav>
 
-            </section>
+            </div>
 
             <section class="section__cart">
 
@@ -112,21 +117,39 @@
 
                     <thead>
 
-                        <th> ID </th>
-                        <th> Descripción </th>
-                        <th> Importe </th>
-                        <th> Total </th>
+                        <tr>
+
+                            <th> ID </th>
+                            <th> Productos </th>
+                            <th> Precio </th>
+                            <th> Cantidad </th>
+
+                        </tr>
 
                     </thead>
 
-                    <tbody id="cartProd">
+                    <tbody class="table-products">
 
                         <tr>
 
-                            <td> 1 </td>
-                            <td> Producto </td>
-                            <td> 1000 </td>
-                            <td> 2000 </td>
+                            <th> 1 </th>
+                            <td> 
+                            
+                                <img src="../img/prod-new-1.jpg" alt="prod-new-1">
+                                <h3> Title </h3>
+                            
+                            </td>
+                            <td> 1000 $ </td>
+                            <td> 
+                                
+                                <input type="number" min="1" value="1">
+                                <button class="cart-delete">
+
+                                    <i class="fa-solid fa-delete-left"></i>
+
+                                </button>
+
+                            </td>
 
                         </tr>
 

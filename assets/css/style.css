@@ -625,6 +625,13 @@ footer {
 
 }
 
+.cover__cart-products {
+
+    max-height: 55vh;
+    overflow-y: auto;
+
+}
+
 .cover__cart-price {
 
     position: absolute;
@@ -636,6 +643,7 @@ footer {
 
     left: 19rem;
     font-size: 1.15rem;
+    margin-top: 5px;
 
 }
 
@@ -661,13 +669,26 @@ footer {
 
 .cart-product img {
 
+    width: 5rem;
     height: 5rem;
 
 }
 
 .cart-product div {
 
+    display: flex;
+    flex-direction: column;
     width: 50%;
+
+}
+
+.cart-product input {
+
+    width: 40px;
+    background-color: #3c70a3;
+    border: 2px solid #162b3f;
+    font-weight: bold;
+    text-align: end;
 
 }
 

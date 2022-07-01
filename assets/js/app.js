@@ -1,303 +1,154 @@
-cartOpen.addEventListener('click', ()=> {
+const add = document.querySelectorAll(".add");
 
-    cart.classList.toggle('cover__cart-active')
+const addEvent = (e) => {
 
-});
+    const btn = e.target;
+    const item = btn.closest(".box__prod");
+    const itemDescription = item.querySelector(".box__prod-info p").textContent;
+    const itemPrice = item.querySelector(".box__prod-info a h3").textContent;
+    const itemImg = item.querySelector(".box__prod-img a img").src;
 
-cartClose.addEventListener('click', ()=> {
+    const newItem = {
 
-    cart.classList.toggle('cover__cart-active')
+        desc: itemDescription,
+        price: itemPrice,
+        img: itemImg,
+        amount: 1
 
-});
+    }
 
-cartBox.addEventListener('click', (e)=> {
+    addEventItem(newItem);
+    alertSuccessful();
 
-    e.stopPropagation()
+}
 
-});
+const addEventItem = (newItem) => {
 
-cart.addEventListener('click', ()=> {
+    const inputCount = boxProds.getElementsByClassName("input-count");
 
-    cartClose.click()
+    for (i = 0; i < shoppingCart.length; i++) {
+       
+        if (shoppingCart[i].desc.trim() === newItem.desc.trim()){
 
-});
+            shoppingCart[i].amount ++;
+            const inputValue = inputCount[i]
+            inputValue.value++;
+            totalPrices();
 
-const showNews = ( (a)=> {
+            return null;
 
-    boxProductsNew.innerHTML = "";
+        }
 
-    a.forEach(b => {
+    }
 
-        let div = document.createElement("div");
-        div.classList.add("box__prod");
+    shoppingCart.push(newItem);
+    addEventShow();
+
+}
+
+const addEventShow = () => {
+
+    boxProds.innerHTML = "";
+
+    shoppingCart.map(item => {
+
+        const div = document.createElement('div');
+        div.classList.add('cart-product');
         div.innerHTML = `
-        
-            <div class="box__prod-img">
+                    
+            <img src="${item.img}">
+            <div>
 
-                <a href="#">
-                    <img src="${b.img}" alt="prod-new-${b.id}">
-                </a>
-
-            </div>
-
-            <div class="box__prod-info">
-
-                <a href="#">
-                    <h3> ${b.price} $ </h3>
-                </a>
-
-                <p> ${b.description} </p>
-                <button id="add${b.id}" class="anim-btn add"> Añadir al Carrito </button>
+                <p class="desc"> ${item.desc} </p>
+                <p> Precio : ${item.price} </p>
 
             </div>
+            <input type="number" min="1" value=${item.amount} class="input-count">
+            <button class="cart-delete"><i class="fa-solid fa-delete-left"></i></button>
         
         `;
 
-        boxProductsNew.appendChild(div);
+        boxProds.appendChild(div);
 
-        let agg = document.getElementById(`add${b.id}`);
-        agg.addEventListener('click', ()=> {
-
-            addToCartA(b.id);
-            alertSuccessful();
-
-        })
-
-    })
-
-});
-
-const addToCartA = ( (id) => {
-
-    let productAddNew = productsNews.find(pro => pro.id === id);
-
-    shoppingCart.push(productAddNew);
-    showCartA(productAddNew);
-    updateCart();
-
-});
-
-const showCartA = ( (productAddNew) => {
-
-    let div = document.createElement("div");
-    div.setAttribute("class", "cart-product");
-    div.innerHTML = `
-    
-        <p> ${productAddNew.item.toUpperCase()} </p>
-        <p> Precio : ${productAddNew.price} $ </p>
-        <button id="delete${productAddNew.id}" class="cart-delete"><i class="fa-solid fa-delete-left"></i></button>
-    
-    `;
-
-    boxCart.appendChild(div);
-
-    let deleteA = document.getElementById(`delete${productAddNew.id}`);
-    deleteA.addEventListener('click', ()=> {
-
-        deleteA.parentElement.remove()
-        shoppingCart = shoppingCart.filter(e => e.id !== productAddNew.id);
-        updateCart();
-        saveStorage();
-        alertRemove();
-
-    })
-
-});
-
-const showOffers = ( (b) => {
-
-    boxProductsOffers.innerHTML = "";
-
-    b.forEach(c => {
-
-        let div = document.createElement("div");
-        div.classList.add("box__prod");
-        div.innerHTML = `
-        
-            <div class="box__prod-img">
-
-                <a href="#">
-                    <img src="${c.img}" alt="prod-new-${c.id}">
-                </a>
-
-            </div>
-
-            <div class="box__prod-info">
-
-                <a href="#">
-                    <h3> ${c.price} $ </h3>
-                </a>
-
-                <p> ${c.description} </p>
-                <button id="add${c.id}" class="anim-btn add"> Añadir al Carrito </button>
-
-            </div>
-            
-        `;
-
-        boxProductsOffers.appendChild(div);
-
-        let agg = document.getElementById(`add${c.id}`);
-        agg.addEventListener('click', ()=> {
-
-            addToCartB(c.id);
-            alertSuccessful();
-
-        }) 
+        div.querySelector(".cart-delete").addEventListener('click', removeItem);
+        div.querySelector(".input-count").addEventListener('change', inputAddition);
 
     });
 
-});
-
-const alertSuccessful = () => {
-
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
-      
-      Toast.fire({
-        icon: 'success',
-        title: '¡Producto agregado al carrito!',
-        background: '#3c70a3',
-        customClass: {
-
-            popup: 'popup-sweet',
-            title: 'title-sweet',
-            timerProgressBar: 'progress-sweet'
-
-        }
-    })
+    totalPrices();
 
 }
 
-const addToCartB = ( (id) => {
+const totalPrices = () => {
 
-    let productAddOffer = productsOffers.find(pro => pro.id === id);
+    let total = 0;
+    shoppingCart.forEach((item) => {
 
-    shoppingCart.push(productAddOffer);
-    showCartB(productAddOffer);
-    updateCart();
+        const priceItem = Number(item.price.replace("$", ''));
+        total = total + priceItem*item.amount;
 
-});
+    });
 
-const showCartB = ( (productAddOffer) => {
-
-    let div = document.createElement("div");
-    div.setAttribute("class", "cart-product");
-    div.innerHTML = `
-    
-        <p> ${productAddOffer.item.toUpperCase()} </p>
-        <p> Precio : ${productAddOffer.price} $ </p>
-        <button id="delete${productAddOffer.id}" class="cart-delete"><i class="fa-solid fa-delete-left"></i></button>
-    
-    `;
-
-    boxCart.appendChild(div);
-
-    let deleteA = document.getElementById(`delete${productAddOffer.id}`);
-    deleteA.addEventListener('click', ()=> {
-
-        deleteA.parentElement.remove()
-        shoppingCart = shoppingCart.filter(e => e.id !== productAddOffer.id);
-        updateCart();
-        saveStorage();
-        alertRemove();
-
-    })
-
-});
-
-const updateCart = ( () => {
-
-    cartCounter.innerText = shoppingCart.length
-    totalPrice.innerText = shoppingCart.reduce((acc, e) => acc + e.price, 0);
+    totalPrice.innerHTML = `${total}`
+    cartCounter.innerText = shoppingCart.length;
     saveStorage();
 
-});
+}
 
-const alertRemove = () => {
+const removeItem = (e) => {
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
-      
-      Toast.fire({
-        icon: 'error',
-        title: '¡Producto eliminado del carrito!',
-        background: '#3c70a3',
-        customClass: {
+    const btnDelete = e.target;
+    const div = btnDelete.closest(".cart-product");
+    const desc = div.querySelector(".desc").textContent;
 
-            popup: 'popup-sweet',
-            title: 'title-sweet',
-            timerProgressBar: 'progress-sweet'
+    for (i = 0; i < shoppingCart.length; i++){
 
-        }
-    })
+        shoppingCart[i].desc.trim() === desc.trim() && shoppingCart.splice(i, 1);
+
+    }
+
+    div.remove();
+    totalPrices();
+    alertRemove();
 
 }
 
-const saveStorage = ( () => {
+const inputAddition = (e) => {
 
-    if (shoppingCart.length > 0) {
-     
-        localStorage.setItem("cart", JSON.stringify(shoppingCart));
+    const sumIn = e.target;
+    const div = sumIn.closest(".cart-product");
+    const desc = div.querySelector(".desc").textContent;
 
-    }
+    shoppingCart.forEach(item => {
 
-});
+        if (item.desc.trim() === desc){
 
-const recoverStorage = ( () => {
+            sumIn.value < 1 ? (sumIn.value = 1) : sumIn.value;
+            item.amount = sumIn.value;
+            totalPrices();
 
-    if (localStorage.getItem("cart")) {
+        }
 
-        cartA = JSON.parse(localStorage.getItem("cart"));
+    });
 
-        cartA.forEach(a => {
+}
 
-            let div = document.createElement("div");
-            div.setAttribute('class', 'cart-product');
-            div.innerHTML = `
-            
-                <p> ${a.item.toUpperCase()} </p>
-                <p> Precio : ${a.price} $ </p>
-                <button id="delete${a.id}" class="cart-delete"><i class="fa-solid fa-delete-left"></i></button>
-            
-            `;
+const saveStorage = () => {
 
-            boxCart.appendChild(div);
+    localStorage.setItem('cart', JSON.stringify(shoppingCart));
 
-            let deleteA = document.getElementById(`delete${a.id}`);
-            deleteA.addEventListener('click', ()=> {
+}
 
-                deleteA.parentElement.remove()
-                shoppingCart = shoppingCart.filter(e => e.id !== a.id); debugger
-                localStorage.removeItem("cart");
-                updateCart();
+window.onload = () => {
 
-            })
+    const storage = JSON.parse(localStorage.getItem('cart'));
 
-        });
+    storage && (shoppingCart = storage); addEventShow(); 
 
-    }
+}
+
+add.forEach(btn => {
+
+    btn.addEventListener('click', addEvent);
 
 });
-
-showNews(productsNews);
-showOffers(productsOffers);
-recoverStorage();
