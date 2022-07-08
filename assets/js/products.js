@@ -1,41 +1,41 @@
-cartOpen.addEventListener('click', ()=> {
+cartOpen.addEventListener('click', () => {
 
     cart.classList.toggle('cover__cart-active')
 
 });
 
-cartClose.addEventListener('click', ()=> {
+cartClose.addEventListener('click', () => {
 
     cart.classList.toggle('cover__cart-active')
 
 });
 
-cartBox.addEventListener('click', (e)=> {
+cartBox.addEventListener('click', (e) => {
 
     e.stopPropagation()
 
 });
 
-cart.addEventListener('click', ()=> {
+cart.addEventListener('click', () => {
 
     cartClose.click()
 
 });
 
-const showNew = (a) => {
+const addDataA = (content) => {
 
-    boxProductsNew.innerHTML = "";
-
-    a.forEach(b => {
-
-        let div = document.createElement("div");
-        div.classList.add("box__prod");
-        div.innerHTML = `
+    const {id, description, price, img, stock} = content;
+    let showProdA = "";
+    showProdA += `
         
+        <div class="box__prod">
+
             <div class="box__prod-img">
 
                 <a href="#">
-                    <img src="${b.img}" alt="prod-new-${b.id}">
+
+                    <img src="${img}" alt="prod-new-${id}">
+
                 </a>
 
             </div>
@@ -43,36 +43,37 @@ const showNew = (a) => {
             <div class="box__prod-info">
 
                 <a href="#">
-                    <h3> ${b.price} $ </h3>
+
+                    <h3> ${price} $ </h3>
+
                 </a>
 
-                <p> ${b.description} </p>
-                <button id="add${b.id}" class="anim-btn add"> Añadir al Carrito </button>
+                <p class="description"> ${description.toUpperCase()} </p>
+                <button id="add${id}" class="anim-btn add"> Añadir al Carrito </button>
 
             </div>
+
+        </div>
         
-        `;
-
-        boxProductsNew.appendChild(div);
-
-    })
+    `;
+    return showProdA;
 
 }
 
-const showOffers = (b) => {
+const addDataB = (content) => {
 
-    boxProductsOffers.innerHTML = "";
+    const {id, description, price, img, stock} = content;
+    let showProductB = "";
+    showProductB += `
+    
+        <div class="box__prod">
 
-    b.forEach(c => {
-
-        let div = document.createElement("div");
-        div.classList.add("box__prod");
-        div.innerHTML = `
-        
             <div class="box__prod-img">
 
                 <a href="#">
-                    <img src="${c.img}" alt="prod-new-${c.id}">
+
+                    <img src="${img}" alt="prod-new-${id}">
+
                 </a>
 
             </div>
@@ -80,19 +81,20 @@ const showOffers = (b) => {
             <div class="box__prod-info">
 
                 <a href="#">
-                    <h3> ${c.price} $ </h3>
+
+                    <h3> ${price} $ </h3>
+
                 </a>
 
-                <p> ${c.description} </p>
-                <button id="add${c.id}" class="anim-btn add"> Añadir al Carrito </button>
+                <p class="description"> ${description.toUpperCase()} </p>
+                <button id="add${id}" class="anim-btn add"> Añadir al Carrito </button>
 
             </div>
-            
-        `;
 
-        boxProductsOffers.appendChild(div);
-
-    });
+        </div>
+    
+    `;
+    return showProductB;
 
 }
 
@@ -154,5 +156,23 @@ const alertRemove = () => {
 
 }
 
-showNew(productsNew);
-showOffers(productsOffers);
+const alertError = () => {
+
+    Swal.fire({
+
+        icon: 'error',
+        title: 'Oops...',
+        text: '¡Ha ocurrido un error, prueba más tarde!',
+        background: '#3c70a3',
+        customClass: {
+
+            popup: 'popup-sweet',
+            title: 'title-sweet',
+            confirmButton: 'button-sweet',
+            htmlContainer: 'html-container-sweet'
+
+        }
+
+    })
+
+}

@@ -1,0 +1,40 @@
+[
+
+    {
+
+        "id": 1, 
+        "item": "pantalla smart tv", 
+        "description": "Pantalla moderna Tiendita, con Smart TV a precio increible.", 
+        "price": 696, 
+        "img": "./assets/img/prod-offer-1.jpg"
+    
+    },
+    {
+
+        "id": 2, 
+        "item": "sillon individual", 
+        "description": "Sillón individual, oferta unica con pocas unidades.", 
+        "price": 116, 
+        "img": "./assets/img/prod-offer-2.jpg"
+    
+    },
+    {
+        
+        "id": 3, 
+        "item": "asistente virtual", 
+        "description": "Asistente virtual Tiendita, oferta única para usuarios.", 
+        "price": 17.4, 
+        "img": "./assets/img/prod-offer-3.jpg"
+    
+    },
+    {
+        
+        "id": 4, 
+        "item": "bocina", 
+        "description": "Bocina Tiendita x JBL a increible precio, sonido excelente.", 
+        "price": 116, 
+        "img": "./assets/img/prod-offer-4.jpg"
+    
+    }
+
+]

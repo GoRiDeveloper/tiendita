@@ -11,13 +11,13 @@
 
         <!-- Sweet Alert Script -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <!-- Iconos Script -->
+        <!-- Icons Script -->
         <script src="https://kit.fontawesome.com/9a70094236.js" crossorigin="anonymous"></script>
         <!-- Script -->
         <script defer src="./assets/js/variables.js"></script>
         <script defer src="./assets/js/database.js"></script>
-        <script defer src="./assets/js/presentation.js"></script>
-        <script defer src="./assets/js/app.js"></script>
+        <script defer src="./assets/js/products.js"></script>
+        <script src="./assets/js/app.js"></script>
 
         <link rel="shortcut icon" href="./assets/img/Tiendita.png">
         <!-- Estilos CSS -->
@@ -27,9 +27,9 @@
 
     </head>
 
-    <body class="grid-index"> 
+    <body class="grid-index">
         
-        <header>
+        <header id="beginning">
 
             <div class="h__logo">
 
@@ -88,15 +88,15 @@
 
                             <ul>
 
-                                <li><a href="#"> Tecnología </a></li>
-                                <li><a href="#"> Electronica </a></li>
-                                <li><a href="#"> Muebles </a></li>
-                                <li><a href="#"> Moda </a></li>
+                                <li><a href="#products-new"> Tecnología </a></li>
+                                <li><a href="#products-new"> Electronica </a></li>
+                                <li><a href="#products-offers"> Muebles </a></li>
+                                <li><a href="#products-new"> Moda </a></li>
 
                             </ul>
 
                         </li>
-                        <li><a href="#"> Ofertas </a></li>
+                        <li><a href="#products-offers"> Ofertas </a></li>
                         <li><a href="./assets/pages/Sign-In.html"> Historial </a></li>
                         <li><a href="./assets/pages/Sign-In.html"> Vender </a></li>
 
@@ -163,7 +163,11 @@
                 
                 <div class="f__logo">
 
-                    <a href="./index.html"><img src="./assets/img/Tiendita.png" alt="tiendita-logo"></a>
+                    <a href="#beginning">
+
+                        <img src="./assets/img/Tiendita.png" alt="tiendita-logo">
+
+                    </a>
 
                 </div>
 
@@ -193,7 +197,7 @@
 
                 </div>
                 <p class="cover__cart-price"> Total : <span class="total-price">0</span> $ </p>
-                <a href="./assets/pages/Products.html">
+                <a href="./assets/pages/Sign-In.html">
 
                     <button class="anim-btn cover__cart-buy"> Comprar Ahora </button>
                     

@@ -10,10 +10,15 @@ const boxProductsOffers = document.getElementById("products-offers");
 const cartCounter = document.getElementById("cart-counter");
 const totalPrice = document.querySelector(".total-price");
 const boxProds = document.querySelector(".cover__cart-products");
-const tableProd = document.querySelector(".table-products");
+
+const newJSON = 'assets/js/product-new.json';
+const offerJSON = 'assets/js/product-offer.json';
 
 const productsNew = [];
 const productsOffers = [];
 const iva = 1.16;
 
+let showA = "";
+let showB = "";
 let shoppingCart = [];
+let contentJSON = [];

@@ -1,12 +1,10 @@
-const add = document.querySelectorAll(".add");
-
 const addEvent = (e) => {
 
     const btn = e.target;
     const item = btn.closest(".box__prod");
-    const itemDescription = item.querySelector(".box__prod-info p").textContent;
-    const itemPrice = item.querySelector(".box__prod-info a h3").textContent;
     const itemImg = item.querySelector(".box__prod-img a img").src;
+    const itemDescription = item.querySelector(".description").textContent;
+    const itemPrice = item.querySelector(".box__prod-info a h3").textContent;
 
     const newItem = {
 
@@ -82,15 +80,17 @@ const addEventShow = () => {
 const totalPrices = () => {
 
     let total = 0;
+    let counter = 0;
     shoppingCart.forEach((item) => {
 
         const priceItem = Number(item.price.replace("$", ''));
         total = total + priceItem*item.amount;
+        counter = counter + item.amount;
 
     });
 
-    totalPrice.innerHTML = `${total}`
-    cartCounter.innerText = shoppingCart.length;
+    totalPrice.innerHTML = `${total.toFixed(2)}`
+    cartCounter.innerText = counter;
     saveStorage();
 
 }
@@ -123,7 +123,7 @@ const inputAddition = (e) => {
 
         if (item.desc.trim() === desc){
 
-            sumIn.value < 1 ? (sumIn.value = 1) : sumIn.value;
+            sumIn.value <= 0 ? (sumIn.value = 1) : sumIn.value;
             item.amount = sumIn.value;
             totalPrices();
 
@@ -146,9 +146,3 @@ window.onload = () => {
     storage && (shoppingCart = storage); addEventShow(); 
 
 }
-
-add.forEach(btn => {
-
-    btn.addEventListener('click', addEvent);
-
-});

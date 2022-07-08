@@ -1,0 +1,39 @@
+[
+
+    {
+        "id": 1,
+        "item": "refrigerador",
+        "description": "Refrigerador, electrodoméstico de alta calidad.",
+        "price": 1160, 
+        "img": "./assets/img/prod-new-1.jpg"
+
+    },
+    {
+
+        "id": 2,
+        "item": "celular", 
+        "description": "Celular con tecnología de punta a excelente precio.", 
+        "price": 638, 
+        "img": "./assets/img/prod-new-2.jpg"
+    
+    },
+    {
+
+        "id": 3, 
+        "item": "tenis", 
+        "description": "Tenis Nike x Tiendita, exclusivos y en muy pocas unidades.", 
+        "price": 150.8, 
+        "img": "./assets/img/prod-new-3.jpg"
+    
+    },
+    {
+
+        "id": 4, 
+        "item": "pc gamer", 
+        "description": "P.C. Gamer con componentes de alto rendimiento.", 
+        "price": 1450, 
+        "img": "./assets/img/prod-new-4.jpg"
+    
+    }
+
+]
