@@ -22,9 +22,47 @@ cart.addEventListener('click', () => {
 
 });
 
+const initializationA = (data) => {
+
+    contentJSON = data
+    contentJSON.forEach(element => {
+
+        showA += addDataA(element)
+
+    })
+    boxProductsNew.innerHTML = showA
+
+    const add = document.querySelectorAll(".add");
+    add.forEach(btn => {
+
+        btn.addEventListener('click', addEvent); 
+            
+    });
+
+}
+
+const initializationB = (data) => {
+
+    contentJSON = data
+    contentJSON.forEach(element => {
+
+        showB += addDataB(element)
+
+    })
+    boxProductsOffers.innerHTML = showB
+
+    const add = document.querySelectorAll(".add");
+    add.forEach(btn => {
+
+        btn.addEventListener('click', addEvent);
+            
+    });
+
+}
+
 const addDataA = (content) => {
 
-    const {id, description, price, img, stock} = content;
+    const {id, description, price, img} = content;
     let showProdA = "";
     showProdA += `
         
@@ -62,7 +100,7 @@ const addDataA = (content) => {
 
 const addDataB = (content) => {
 
-    const {id, description, price, img, stock} = content;
+    const {id, description, price, img} = content;
     let showProductB = "";
     showProductB += `
     
@@ -173,6 +211,54 @@ const alertError = () => {
 
         }
 
+    })
+
+}
+
+const alertLoading = () => {
+
+    let timerInterval
+
+        Swal.fire({
+        title: '¡Cargando!',
+        html: '<b></b> ms.',
+        timer: 1000,
+        timerProgressBar: true,
+        background: '#3c70a3',
+        customClass: {
+
+            popup: 'popup-sweet',
+            title: 'title-sweet',
+            htmlContainer: 'html-container-sweet',
+            timerProgressBar: 'progress-sweet'
+
+        },
+
+        didOpen: () => {
+
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+            }, 100)
+
+        },
+
+        willClose: () => {
+
+            clearInterval(timerInterval)
+
+        }
+
+        })
+
+        .then((result) => {
+
+        if (result.dismiss === Swal.DismissReason.timer) {
+
+            console.log("");        
+
+        }
     })
 
 }

@@ -24,7 +24,6 @@ a {
 }
 
 .grid-index,
-.grid-products,
 .grid-signin {
 
     display: grid;
@@ -92,6 +91,33 @@ header {
     font-size: 1rem;
     font-family: 'Expletus Sans', cursive;
     padding: .3rem .3rem;
+
+}
+
+@media screen and (max-width: 888px) {
+    
+    .h__search form input {
+
+        width: 10rem;
+
+    }
+
+    .section__content {
+
+        position: relative;
+        top: -200px;
+
+    }
+
+}
+
+@media screen and (max-width: 493px) {
+    
+    .h__search form input {
+
+        width: 5rem;
+
+    }
 
 }
 
@@ -818,5 +844,11 @@ p{
 
     background-color: #162b3f !important;
     font-family: 'Expletus Sans', cursive;
+
+}
+
+.swal2-loader {
+
+    border-color: #162b3f transparent #1e385286 transparent !important;
 
 }
