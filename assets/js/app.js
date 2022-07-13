@@ -146,3 +146,11 @@ window.onload = () => {
     storage && (shoppingCart = storage); addEventShow(); 
 
 }
+
+const deleteStorage = () => {
+
+    const storage = JSON.parse(localStorage.getItem('cart'));
+
+    storage && localStorage.removeItem('cart');
+
+}

@@ -22,6 +22,21 @@ cart.addEventListener('click', () => {
 
 });
 
+buyAllBtn.addEventListener('click', () => {
+
+    if (shoppingCart.length > 0) {
+
+        deleteStorage();
+        alertBuy();
+
+    } else {
+
+        alertNone();
+
+    }
+
+});
+
 const initializationA = (data) => {
 
     contentJSON = data
@@ -139,18 +154,23 @@ const addDataB = (content) => {
 const alertSuccessful = () => {
 
     const Toast = Swal.mixin({
+
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
+
           toast.addEventListener('mouseenter', Swal.stopTimer)
           toast.addEventListener('mouseleave', Swal.resumeTimer)
+
         }
+
     })
       
       Toast.fire({
+
         icon: 'success',
         title: '¡Producto agregado al carrito!',
         background: '#3c70a3',
@@ -161,6 +181,7 @@ const alertSuccessful = () => {
             timerProgressBar: 'progress-sweet'
 
         }
+
     })
 
 }
@@ -168,18 +189,22 @@ const alertSuccessful = () => {
 const alertRemove = () => {
 
     const Toast = Swal.mixin({
+
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
+
           toast.addEventListener('mouseenter', Swal.stopTimer)
           toast.addEventListener('mouseleave', Swal.resumeTimer)
+
         }
     })
       
       Toast.fire({
+
         icon: 'error',
         title: '¡Producto eliminado del carrito!',
         background: '#3c70a3',
@@ -190,6 +215,7 @@ const alertRemove = () => {
             timerProgressBar: 'progress-sweet'
 
         }
+
     })
 
 }
@@ -206,7 +232,28 @@ const alertError = () => {
 
             popup: 'popup-sweet',
             title: 'title-sweet',
-            confirmButton: 'button-sweet',
+            confirmButton: 'button-sweet anim-btn',
+            htmlContainer: 'html-container-sweet'
+
+        }
+
+    })
+
+}
+
+const alertNone = () => {
+
+    Swal.fire({
+
+        icon: 'error',
+        title: '¡Carrito Vacio!',
+        text: 'Aun no haz agregado productos a tu carrito.',
+        background: '#3c70a3',
+        customClass: {
+
+            popup: 'popup-sweet',
+            title: 'title-sweet',
+            confirmButton: 'button-sweet anim-btn',
             htmlContainer: 'html-container-sweet'
 
         }
@@ -260,5 +307,67 @@ const alertLoading = () => {
 
         }
     })
+
+}
+
+const alertBuy = () => {
+
+    const priceAll = document.querySelector(".total-price").innerText;
+
+    const swalWithBootstrapButtons = Swal.mixin({
+
+        background: '#3c70a3',
+        customClass: {
+
+            popup: 'popup-sweet',
+            title: 'title-sweet',
+            htmlContainer: 'html-container-sweet',
+            confirmButton: 'btn btn-success anim-btn',
+            cancelButton: 'btn btn-danger anim-btn'
+
+        },
+        buttonsStyling: false
+
+      })
+      
+      swalWithBootstrapButtons.fire({
+
+        title: '¿Quieres Comprar Todo?',
+        text: `Se te descontará ${priceAll} $ de tu saldo en Tiendita`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sii, ¡Comprar Todo!',
+        cancelButtonText: '¡No!, me he arrepentido',
+        reverseButtons: true
+
+      })
+
+      .then((result) => {
+
+        if (result.isConfirmed) {
+
+          swalWithBootstrapButtons.fire(
+
+            '¡Gracias Por Tu Compra!',
+            'Tus productos se te enviaran muy pronto...',
+            'success'
+
+          )
+
+        } 
+
+        else if (result.dismiss === Swal.DismissReason.cancel) {
+
+          swalWithBootstrapButtons.fire(
+
+            '¡Cancelaste tu compra!',
+            'No se te descontara nada de tu saldo',
+            'error'
+
+          )
+
+        }
+
+      })
 
 }

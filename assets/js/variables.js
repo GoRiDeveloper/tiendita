@@ -10,6 +10,7 @@ const boxProductsOffers = document.getElementById("products-offers");
 const cartCounter = document.getElementById("cart-counter");
 const totalPrice = document.querySelector(".total-price");
 const boxProds = document.querySelector(".cover__cart-products");
+const buyAllBtn = document.querySelector(".cover__cart-buy");
 
 const newJSON = 'assets/js/product-new.json';
 const offerJSON = 'assets/js/product-offer.json';
